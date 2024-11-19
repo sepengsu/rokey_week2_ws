@@ -1,0 +1,75 @@
+for i in range(3):
+    def grip():
+        set_digital_output(1,ON)
+        set_digital_output(2,OFF)
+        wait_digital_input(1,ON)
+       
+    def ungrip():
+        set_digital_output(2,ON)
+        set_digital_output(1,OFF)
+        wait_digital_input(2,ON)
+        
+    
+    '''
+    시나리오 
+    1. HOME
+    2. 현재 기어 위치로 moveL
+    3. 높이 지정하여 moveL
+    4. grip
+    5. 들어올리기
+    6. 끼워야하는 위치로 이동 
+    7. 내려하면서 period 
+    '''
+    #posx(423.99, -154.41, 39.17, 90.12, -177.09, 91.58) # base기준 2번 위치 
+    des = posx(424.09, -149.78, 40.92, 81.54, -177.17, 82.84) # 기어 끼우는 장소 
+    init = posx(424.09, 145.78, 40.92, 81.54, -177.17, 82.84)
+    '''ungrip()
+    grip()'''#
+    # posx(424.09, 145.78, 40.92, 74.26, -176.88, 75.65)
+    des_u = posx(424.09, -149.78, 140.92, 81.54, -177.17, 82.84)
+    init_u = posx(424.09, 145.78, 140.92, 81.54, -177.17, 82.84)
+    
+    movej(posj(0,0,90,0,90,0),vel=40,acc=20)
+    movel(init_u,vel=40,acc=20)
+    movel(init,vel=40,acc=20)
+    grip()
+    wait(1)
+    movel(init_u,vel=40,acc=20)
+    movel(des_u,vel=40,acc=20)
+    # 내려가면서 force check
+    
+    set_ref_coord(DR_TOOL) # ord change
+    task_compliance_ctrl() 
+    fd = [0,0,20,0,0,0]
+    f_ctrl_dir= [0,0,1,0,0,0]
+    set_desired_force(fd,f_ctrl_dir,mod=DR_FC_MOD_REL) # 
+    while True:
+        if not check_force_condition(axis=DR_AXIS_Z,ref=DR_TOOL,max=10):
+            amove_periodic(amp=[0,0,0,0,0,10],period = 2,atime=0.5,repeat=5,ref=DR_TOOL)
+            break
+    
+    while True:
+        if  check_position_condition(axis = DR_AXIS_Z,ref=DR_BASE,max=50):
+            stop(DR_QSTOP)
+            break
+            
+    while True:
+        if check_position_condition(axis = DR_AXIS_Z,ref=DR_BASE,max=80):
+            release_compliance_ctrl()
+            set_ref_coord(DR_BASE)
+            ungrip()
+            movel(des_u,ref=DR_BASE,a=30,v=40)
+            break
+     
+    movej(posj(0,0,90,0,90,0),vel=30,acc=20)
+    movel(des_u,vel=40,acc=20)
+    movel(des,vel=40,acc=20)
+    grip()
+    wait(1.0)
+    movel(des_u,vel=40,acc=20)
+    movel(init_u,vel=40,acc=20)
+    movel(init,vel=40,acc=20)
+    ungrip()
+    wait(1.0)
+    movel(init_u,vel=40,acc=20)
+    movej(posj(0,0,90,0,90,0),vel=30,acc=20)
