@@ -28,6 +28,19 @@
    - 순응제어와 힘제어를 조합하여 정밀 작업 수행
 
 ---
+### 🏆 실습 결과물
+<table>
+  <tr>
+    <td align="center">
+      <img src="docs/Homing.jpg" width="300">
+      <br><b>Homing</b></br>
+    </td>
+    <td align="center">
+      <img src="docs/week2_gear.gif" width="225">
+      <br><b>Gear 조립(힘제어)</b></br>
+    </td>
+  </tr>
+</table>
 
 ## 2. DART Studio를 활용한 협동로봇 동작 운영 실습
 
