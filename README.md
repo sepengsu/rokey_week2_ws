@@ -12,16 +12,7 @@
    - 조인트 이동(`Move J`), 선형 이동(`Move L`) 실습
    - 원호 이동(`Move C`) 및 나선형 이동(`Move Spiral`) 실습
    - 비동기 모션(`Move Periodic`)을 활용한 왕복 동작 실습
-
-2. **Task Builder를 활용한 자동화**
-   - Pick & Place 프로그램 작성
-   - Task Writer를 활용한 프로그램 작성 및 실행
-   - 반복문(`Repeat` / `for` / `while`) 활용
-   - 조건문(`if` / `else if` / `else`)을 이용한 분기 처리
-   - 서브 프로그램(`Sub Program`) 생성 및 호출
-
-3. **안전 기능 및 제한 설정**
-   - 로봇 제한치(TCP 속도, 힘, 각속도 등) 설정 및 조정
+이 실습에서는 다음과 같은 내용을 학습하였습니다.
    - 충돌 감지 민감도 조정 및 충돌 방지 실습
    - 안전 정지 모드(STO, SS1, SS2) 및 비상 정지 버튼 실습
    - 안전 I/O(Safety I/O) 설정 및 테스트
@@ -75,6 +66,19 @@
 - **작업 영역 제한 및 안전 기능 적용**
 
 ---
+### 🏆 실습 결과물
+<table>
+  <tr>
+    <td align="center">
+      <img src="docs/week2_movec.gif" width="225">
+      <br><b>Move C on Gear</b></br>
+    </td>
+    <td align="center">
+      <img src="docs/block.jpg" width="300">
+      <br><b>Domino</b></br>
+    </td>
+  </tr>
+</table>
 
 ## 3. 공항 백드롭 협동로봇 시스템 기획
 
